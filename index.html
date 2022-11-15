@@ -17,7 +17,7 @@ integrity="sha384-eKjgHJ9+vwU/FCSUG3nV1RKFolUXLsc6nLQ2R1tD0t4YFPCvRmkcF8saIfOZNW
 <script>
 function loginWithKakao() {
     Kakao.Auth.authorize({
-    redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
+    redirectUri: 'https://dev-jjong.github.io',
     state: 'sendme_text',
     scope: 'talk_message', // 앱 동의 항목 설정 및 사용자 동의 필요
     });
@@ -73,6 +73,6 @@ function getCookie(name) {
     <p id="token-result"></p>
     <button class="api-btn" onclick="sendToMe()" style="visibility:hidden">나에게 메시지 보내기</button>
       
-    
+    <iframe style="display: block; width:100vh; height:100vh" src="https://m.kbsec.com/go.able?linkcd=m05010000"/>
 </body>
 </html>
