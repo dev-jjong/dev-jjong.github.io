@@ -10,8 +10,18 @@
 <script>
   $(function(){
     Kakao.init('2f1a563b56e3d759df4602ec0b946352');
+
+    // 메시지 수신 받는 eventListener 등록
+    window.addEventListener( 'message', receiveMsgFromChild );
   });
   
+
+  // 자식으로부터 메시지 수신
+  function receiveMsgFromChild(e) {
+    var dataArray = e.data.split('|', -1);
+    sendToMe(dataArray[0], 'https://developers.kakao.com');
+  }
+    
   function loginWithKakao() {
     Kakao.Auth.login({
       success: function(response) {
@@ -59,7 +69,6 @@
     alt="카카오 로그인 버튼" />
 </a>
 <p id="token-result"></p>
-<button id="btn" class="api-btn" onclick="sendToMe('테스트입니다', 'https://developers.kakao.com')" style="visibility:hidden">나에게 메시지 보내기</button>
 <iframe src="https://m.kbsec.com/go.able?linkcd=m05010000" style="display:block; width:100vh; height:100vh;"/>
 </body>
 </html>
