@@ -55,13 +55,9 @@
           },
         },
       },
-    })
-      .then(function(res) {
-        alert('success: ' + JSON.stringify(res));
-      })
-      .catch(function(err) {
-        alert('error: ' + JSON.stringify(err));
-      });
+    }).catch(function(err) {
+        console.log('error: ' + JSON.stringify(err));
+    });
   }
 </script>
 </head>
