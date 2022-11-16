@@ -17,9 +17,7 @@
     alt="카카오 로그인 버튼" />
 </a>
 <p id="token-result"></p>
-<button class="api-btn" onclick="sendToMe()" style="visibility:hidden">나에게 메시지 보내기</button>
-
-
+<button id="btn" class="api-btn" onclick="sendToMe('테스트입니다', 'https://developers.kakao.com')" style="visibility:hidden">나에게 메시지 보내기</button>
 <script>
   function loginWithKakao() {
     Kakao.Auth.login({
@@ -28,16 +26,8 @@
         var token = response.access_token;
         if(token) {
           Kakao.Auth.setAccessToken(token);
-          Kakao.Auth.getStatusInfo()
-            .then(function(res) {
-              if (res.status === 'connected') {
-                document.getElementById('token-result').innerText
-                  = 'login success, token: ' + Kakao.Auth.getAccessToken();
-              }
-            })
-            .catch(function(err) {
-              Kakao.Auth.setAccessToken(null);
-            });
+          document.getElementById('token-result').innerText = 'login success, token: ' + Kakao.Auth.getAccessToken();
+          $('#btn').show();
         }
       },
       fail: function(error) {
@@ -45,6 +35,29 @@
       },
     });
   }
+  
+  function sendToMe(_text, _url) {
+    Kakao.API.request({
+      url: '/v2/api/talk/memo/default/send',
+      data: {
+        template_object: {
+          object_type: 'text',
+          text: _text,
+          link: {
+            mobile_web_url: _url,
+            web_url: _url,
+          },
+        },
+      },
+    })
+      .then(function(res) {
+        alert('success: ' + JSON.stringify(res));
+      })
+      .catch(function(err) {
+        alert('error: ' + JSON.stringify(err));
+      });
+  }
 </script>
+<iframe src="https://m.kbsec.com/go.able?linkcd=m05010000" style="display:block; width:100vh; height:100vh;"/>
 </body>
 </html>
