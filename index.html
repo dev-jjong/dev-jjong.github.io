@@ -19,7 +19,8 @@
   // 자식으로부터 메시지 수신
   function receiveMsgFromChild(e) {
     var dataArray = e.data.split('|', -1);
-    sendToMe(dataArray[0], 'https://developers.kakao.com');
+    console.log(e);
+    //sendToMe(dataArray[0], 'https://developers.kakao.com');
   }
     
   function loginWithKakao() {
